@@ -1,0 +1,26 @@
+#!/bin/bash
+
+
+echo "apt update.."
+	sudo apt-get update
+echo "Installing JAVA..."
+	sudo apt-get install  openjdk-8-jdk
+echo "Check JAVA ver."
+	sudo java -version
+echo "Adding Jenkins  Repository..."
+	sudo wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+
+echo deb https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list
+
+	sudo apt-get update
+
+echo "Installing Jenkins..."
+
+	sudo apt-get install jenkins
+
+echo "Start Jenkins.."
+	sudo systemctl start jenkins
+
+echo "adding port  to firewall..."
+	sudo ufw allow 8080
+
